@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Overview from "@/components/Overview";
 import Methodology from "@/components/Methodology";
 import Sources from "@/components/Sources";
+import Status from "@/components/Status";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -11,6 +12,7 @@ const Index = () => {
      <Overview />
      <Methodology />
      <Sources />
+     <Status />
      <Footer />
     </div>
   );
