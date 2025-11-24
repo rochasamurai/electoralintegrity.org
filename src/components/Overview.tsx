@@ -1,4 +1,4 @@
-import { FileSearch, Database, Target } from "lucide-react";
+import { Database, Target, FileSearch } from "lucide-react";
 
 const Overview = () => {
   const features = [
