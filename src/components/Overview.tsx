@@ -3,19 +3,19 @@ import { FileSearch, Database, Target } from "lucide-react";
 const Overview = () => {
   const features = [
     {
-      icon: FileSearch,
-      title: "Systematic Methodology",
-      description: "Following PRISMA guidelines for transparent, replicable systematic reviews of electoral integrity interventions.",
-    },
-    {
       icon: Database,
-      title: "Comprehensive Evidence Base",
-      description: "Synthesizing research across political science, development studies, and policy evaluation to map what works.",
+      title: "7 API Sources",
+      description: "Scopus, Web of Science, IEEE Xplore, Semantic Scholar, OpenAlex, CrossRef, and CORE. Each source provides 90M+ to 300M+ records with documented APIs for reproducible searches.",
     },
     {
       icon: Target,
-      title: "Actionable Insights",
-      description: "Translating evidence into practical recommendations for strengthening democratic electoral processes.",
+      title: "Comprehensive Coverage",
+      description: "Global evidence from 1990-2025 examining electronic, paper-based, and hybrid voting systems. Covers operational, technological, and institutional strategies across diverse political contexts.",
+    },
+    {
+      icon: FileSearch,
+      title: "Open Methodology",
+      description: "Full code publicly available on GitHub. Protocol v1.8 published and registered. AI-assisted workflow with rigorous human oversight ensuring transparency and reproducibility.",
     },
   ];
 
@@ -25,10 +25,10 @@ const Overview = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              About the ELIS Protocol
+              About the ELIS Systematic Review
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              The ELIS Protocol represents a rigorous, open-science approach to understanding and improving electoral integrity through systematic evidence synthesis.
+              The ELIS Systematic Review represents a rigorous, API-driven approach to synthesizing evidence on electoral integrity strategies. Following PRISMA-P 2015 guidelines, this review queries 7 academic databases to provide comprehensive coverage across political science, computer science, law, and governance.
             </p>
           </div>
 
@@ -61,19 +61,23 @@ const Overview = () => {
             <div className="space-y-3 text-muted-foreground">
               <p className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span>Identify and map electoral integrity strategies implemented globally across diverse political contexts</span>
+                <span>Identify operational and technological strategies that improve electoral integrity and auditability</span>
               </p>
               <p className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span>Evaluate the effectiveness of interventions using rigorous systematic review methodology</span>
+                <span>Evaluate evidence across voting technologies (electronic, paper-based, hybrid systems)</span>
               </p>
               <p className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span>Synthesize findings to inform evidence-based policymaking and future research priorities</span>
+                <span>Assess operational mechanisms (audits, transparency measures, oversight frameworks)</span>
               </p>
               <p className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                <span>Promote transparency and reproducibility through open science practices</span>
+                <span>Synthesize institutional frameworks and governance structures supporting electoral integrity</span>
+              </p>
+              <p className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                <span>Provide evidence-based recommendations for electoral reform and policy design</span>
               </p>
             </div>
           </div>
