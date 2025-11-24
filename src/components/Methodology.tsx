@@ -1,37 +1,60 @@
+
 import { CheckCircle2 } from "lucide-react";
 
 const Methodology = () => {
-  const steps = [
+  const stages = [
     {
-      phase: "Protocol Development",
+      phase: "1. Search Strategy",
       items: [
-        "Define research questions and inclusion criteria",
-        "Establish systematic search strategy",
-        "Register protocol for transparency",
+        "Configure queries in YAML",
+        "Test with preflight scripts",
+        "Validate API syntax",
+        "Document all decisions",
       ],
     },
     {
-      phase: "Evidence Identification",
+      phase: "2. Data Harvesting",
       items: [
-        "Comprehensive database searches",
-        "Grey literature screening",
-        "Forward and backward citation tracking",
+        "Run 7 harvest scripts",
+        "Query APIs systematically",
+        "Collect metadata",
+        "Save to validated JSON",
       ],
     },
     {
-      phase: "Study Selection & Quality Assessment",
+      phase: "3. Data Consolidation",
       items: [
-        "Independent dual screening process",
-        "Risk of bias assessment",
-        "Data extraction using standardized forms",
+        "Merge results from all sources",
+        "Deduplicate records",
+        "Normalize metadata fields",
+        "Validate completeness",
       ],
     },
     {
-      phase: "Synthesis & Reporting",
+      phase: "4. Screening (Human-Led)",
       items: [
-        "Narrative synthesis of findings",
-        "Meta-analysis where appropriate",
-        "GRADE evidence quality rating",
+        "Title/abstract screening",
+        "Full-text assessment",
+        "AI-assisted suggestions (human validates)",
+        "Log all decisions with rationales",
+      ],
+    },
+    {
+      phase: "5. Data Extraction",
+      items: [
+        "Study characteristics",
+        "Risk of bias assessment (PRISMA-P, Cochrane ROB-2)",
+        "Primary/secondary outcomes",
+        "GRADE-CERQual confidence ratings",
+      ],
+    },
+    {
+      phase: "6. Synthesis & Reporting",
+      items: [
+        "Quantitative analysis",
+        "Qualitative thematic synthesis",
+        "Mixed methods integration",
+        "PRISMA-compliant manuscript",
       ],
     },
   ];
@@ -42,15 +65,15 @@ const Methodology = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Methodology
+              Six-Stage Workflow
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Our systematic review follows established protocols to ensure rigorous, transparent, and reproducible evidence synthesis.
+              Our systematic review follows a six-stage API-driven workflow with AI assistance and human oversight, ensuring rigorous, transparent, and reproducible evidence synthesis.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {steps.map((step, index) => (
+            {stages.map((stage, index) => (
               <div
                 key={index}
                 className="bg-card border border-border rounded-lg p-6 hover:border-primary/30 transition-colors duration-300"
@@ -60,11 +83,11 @@ const Methodology = () => {
                     {index + 1}
                   </div>
                   <h3 className="text-xl font-semibold text-card-foreground">
-                    {step.phase}
+                    {stage.phase}
                   </h3>
                 </div>
                 <ul className="space-y-2">
-                  {step.items.map((item, itemIndex) => (
+                  {stage.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                       <span className="text-muted-foreground">{item}</span>
@@ -77,7 +100,7 @@ const Methodology = () => {
 
           <div className="mt-12 p-6 bg-primary/5 border border-primary/20 rounded-lg">
             <p className="text-center text-muted-foreground">
-              <span className="font-semibold text-foreground">Standards Alignment:</span> This systematic review adheres to PRISMA 2020 reporting guidelines and is registered with PROSPERO.
+              <span className="font-semibold text-foreground">Standards Alignment:</span> This systematic review follows PRISMA-P 2015 guidelines and Protocol v1.8. Registered with Spiral (Imperial College) and OSF (Open Science Framework).
             </p>
           </div>
         </div>
