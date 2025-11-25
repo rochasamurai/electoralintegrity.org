@@ -121,7 +121,7 @@ const Footer = () => {
                 © 2025 ELIS SLR Agent • Imperial College Business School
               </p>
               <p>
-                Principal Investigator: Carlos Rocha • Supervisor: Prof. Tommaso Valletti
+                Principal Investigator: Carlos Rocha
               </p>
             </div>
             <div className="mt-4 text-center text-xs text-muted-foreground/70">
