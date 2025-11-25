@@ -25,7 +25,7 @@ const Hero = () => {
           </p>
 
           <p className="text-sm text-primary-foreground/70 max-w-2xl mx-auto">
-            Principal Investigator: Carlos Rocha (Imperial College Business School) • Supervisor: Prof. Tommaso Valletti • Sponsor: Instituto Voto Legal (IVL), São Paulo, Brazil
+            Principal Investigator: Carlos Rocha (Imperial College Business School) • Sponsor: Instituto Voto Legal (IVL), São Paulo, Brazil
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
