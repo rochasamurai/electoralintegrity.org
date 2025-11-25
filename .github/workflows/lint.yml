@@ -1,3 +1,14 @@
+# Lint Check Workflow
+# 
+# This workflow runs ESLint to enforce code style guidelines
+# and catch potential issues.
+# 
+# Triggers:
+# - On pull requests to main
+# - On push to main
+# 
+# Purpose: Maintain consistent code quality and style standards
+
 name: Lint Check
 
 on:
@@ -8,21 +19,27 @@ on:
 
 jobs:
   lint:
+    # Use latest Ubuntu runner for consistency
     runs-on: ubuntu-latest
     
     steps:
+      # Checkout repository code
       - name: Checkout code
         uses: actions/checkout@v4
         
+      # Setup Node.js environment with caching
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: '20'  # LTS version
+          cache: 'npm'        # Cache npm dependencies
           
+      # Install dependencies using clean install
       - name: Install dependencies
         run: npm ci
         
+      # Run ESLint to check code style and quality
+      # Configured via eslint.config.js in project root
       - name: Run ESLint
         run: npm run lint
         
