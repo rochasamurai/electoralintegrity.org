@@ -231,28 +231,56 @@ a {
     flex: 0 0 400px;
     animation: fadeInRight 1s ease-out 0.3s both;
 }
+/* ALTERNATIVA 1: CARD COM FUNDO DARK */
+/* Substitua o CSS do .floating-card existente */
 
 .floating-card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 3rem;
+    /* Fundo dark semi-transparente */
+    background: rgba(44, 60, 80, 0.6);
+    /* OU fundo dark sólido: */
+    /* background: #2c3c50; */
+    
+    /* Borda sutil em gold */
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    
     border-radius: 20px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    animation: float 6s ease-in-out infinite;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Animação suave */
+    transition: all 0.3s ease;
 }
 
+.floating-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    border-color: rgba(212, 175, 55, 0.6);
+}
+
+/* Ícone do card */
 .card-icon {
     font-size: 4rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    /* Adicionar glow effect no emoji */
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
 }
 
+/* Título do card */
 .floating-card h3 {
-    color: var(--midnight-blue);
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
 }
 
+/* Subtítulo do card */
 .floating-card p {
-    color: var(--gray-700);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    font-weight: 300;
 }
 
 /* Sections */
