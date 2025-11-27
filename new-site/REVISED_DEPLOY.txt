@@ -1,0 +1,40 @@
+# ELIS Website Deployment Commands
+# Deploy revised research-focused website to GitHub Pages
+
+# Step 1: Navigate to your repository
+cd C:\Users\carlo\electoralintegrity.org
+
+# Step 2: Create new-site folder if it doesn't exist
+New-Item -ItemType Directory -Force -Path "new-site"
+
+# Step 3: Copy the revised HTML file
+# (Download index.html from Claude and place in new-site folder)
+
+# Step 4: Copy CSS file
+# (Download styles.css from Claude and place in new-site folder)
+
+# Step 5: Copy JavaScript file
+# (Download script.js from Claude and place in new-site folder)
+
+# Step 6: Copy README
+# (Download README.md from Claude and place in new-site folder)
+
+# Step 7: Stage all new-site files
+git add new-site/
+
+# Step 8: Check what will be committed
+git status
+
+# Step 9: Commit the changes
+git commit -m "Add revised research-focused website to /new-site folder"
+
+# Step 10: Push to GitHub
+git push origin main
+
+# After pushing, your new site will be available at:
+# https://electoralintegrity.org/new-site/
+
+# To preview locally before deploying:
+# 1. Open PowerShell in the repository folder
+# 2. Run: python -m http.server 8000
+# 3. Visit: http://localhost:8000/new-site/
