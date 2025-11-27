@@ -38,6 +38,7 @@
     <!-- Fonts and Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+	<script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <header class="hero">
@@ -66,7 +67,9 @@
             </div>
             <div class="hero-visual">
                 <div class="floating-card">
-                    <div class="card-icon">📚</div>
+                    <div class="card-icon">
+						<i data-lucide="book-open" style="width: 64px; height: 64px; stroke-width: 1.5;"></i>
+					</div>
                     <h3>Systematic Review</h3>
                     <p>Evidence-based research</p>
                 </div>
@@ -83,17 +86,23 @@
             
             <div class="about-grid">
                 <div class="about-card">
-                    <div class="about-icon">🔬</div>
+                    <div class="about-icon">
+						<i data-lucide="microscope" style="width: 48px; height: 48px; stroke-width: 1.5;"></i>
+					</div>
                     <h3>Systematic Literature Review</h3>
                     <p>ELIS examines peer-reviewed research from 1990-2025 to identify technological, operational, and institutional strategies that improve electoral integrity.</p>
                 </div>
                 <div class="about-card">
-                    <div class="about-icon">🔓</div>
+                    <div class="about-icon">
+						<i data-lucide="lock-open" style="width: 48px; height: 48px; stroke-width: 1.5;"></i>
+					</div>
                     <h3>Open Science</h3>
                     <p>All methodology, data, and tools openly available on GitHub. Every decision documented and reproducible, following PRISMA-P guidelines.</p>
                 </div>
                 <div class="about-card">
-                    <div class="about-icon">🛠️</div>
+                    <div class="about-icon">
+						<i data-lucide="settings" style="width: 48px; height: 48px; stroke-width: 1.5;"></i>
+					</div>
                     <h3>Research Automation</h3>
                     <p>Developing the ELIS SLR Agent—an open-source Python tool that assists systematic review while maintaining transparency and researcher control.</p>
                 </div>
@@ -274,5 +283,8 @@
     </footer>
 
     <script src="script.js"></script>
+	<script>
+		lucide.createIcons();
+	</script>
 </body>
 </html>
