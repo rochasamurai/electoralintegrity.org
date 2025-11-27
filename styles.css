@@ -232,85 +232,70 @@ a {
     animation: fadeInRight 1s ease-out 0.3s both;
 }
 
-/* ALTERNATIVA 4: GLASS MORPHISM (ULTRA MODERNO) */
+/* Floating Card - Dark with Gold Border */
 .floating-card {
-    /* Fundo semi-transparente com blur */
-    background: rgba(255, 255, 255, 0.05);
-    
-    /* Borda sutil */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
+    background: linear-gradient(135deg, 
+        rgba(30, 42, 61, 0.95) 0%, 
+        rgba(44, 60, 80, 0.9) 100%);
+    border: 3px solid #d4af37;
+    border-radius: 20px;
     padding: 3rem;
-    
-    /* Glass effect */
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    
-    /* Sombra suave */
     box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 0 0 1px rgba(212, 175, 55, 0.1);
-    
-    /* Animação suave */
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(212, 175, 55, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
 }
 
-/* Gradiente gold sutil no hover */
-.floating-card::after {
+.floating-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, 
-        rgba(212, 175, 55, 0.05) 0%, 
-        transparent 50%);
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #d4af37, #f4d03f, #d4af37);
+    border-radius: 20px;
     opacity: 0;
+    z-index: -1;
     transition: opacity 0.3s ease;
-    pointer-events: none;
 }
 
-.floating-card:hover::after {
-    opacity: 1;
+.floating-card:hover::before {
+    opacity: 0.3;
 }
 
 .floating-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-5px);
     box-shadow: 
-        0 16px 48px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15),
-        0 0 0 1px rgba(212, 175, 55, 0.3);
+        0 30px 80px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(212, 175, 55, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: #f4d03f;
 }
 
-/* Ícone do card */
 .card-icon {
     font-size: 4rem;
     margin-bottom: 1.5rem;
-    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
 }
 
-/* Título do card */
 .floating-card h3 {
     color: #ffffff;
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
     font-family: 'Playfair Display', serif;
-    letter-spacing: -0.5px;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
 
-/* Subtítulo do card */
 .floating-card p {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     font-size: 1.1rem;
     font-weight: 300;
-    letter-spacing: 0.3px;
 }
 
 /* Sections */
