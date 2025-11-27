@@ -1,0 +1,118 @@
+# INDEX.HTML - CORREÇÕES FINAIS (Opção B)
+
+## ✅ Mudanças Aplicadas:
+
+### **1. Logo Principal da Navegação (Linha 43)**
+```html
+<!-- ANTES: -->
+<img src="public/ELIS-logo-fundo-midnight-ouro.png" alt="ELIS Logo" class="logo-img">
+
+<!-- DEPOIS: -->
+<img src="public/ELIS-logo-fundo-midnight-ouro-640x640.png" alt="ELIS Logo" class="logo-img">
+```
+**Motivo:** Arquivo real tem dimensões no nome (640x640)
+
+---
+
+### **2. Favicon.ico Removido (Linha 34)**
+```html
+<!-- REMOVIDO: -->
+<link rel="icon" type="image/x-icon" href="public/favicon.ico">
+```
+**Motivo:** Arquivo não existe na pasta /public
+
+---
+
+### **3. Apple Touch Icon (Linha 35)**
+```html
+<!-- ANTES: -->
+<link rel="apple-touch-icon" href="public/apple-touch-icon.png">
+
+<!-- DEPOIS: -->
+<link rel="apple-touch-icon" href="public/ELIS-apple-touch-icon.png">
+```
+**Motivo:** Arquivo real tem prefixo "ELIS-"
+
+---
+
+### **4. Emojis Corrigidos**
+Todos os emojis com encoding UTF-8 corrompido foram corrigidos:
+- ✅ 📚 (Linha 60)
+- ✅ 🔬 (Linha 76)
+- ✅ 🔓 (Linha 81)
+- ✅ 🛠️ (Linha 86)
+
+---
+
+## 📋 Arquivos que NÃO Foram Alterados (já estavam corretos):
+
+- ✅ **Logo do Footer:** `ELIS-logo-fundo-midnight-ouro-a-direita.png`
+- ✅ **Social Share:** `ELIS-social-share-1200x630.png`
+- ✅ **Favicon PNG:** `favicon.png`
+
+---
+
+## 🎯 Resultado Final:
+
+Todos os caminhos de imagens no HTML agora correspondem **exatamente** aos arquivos reais na pasta `/public`.
+
+---
+
+## 📥 Arquivo Pronto:
+
+**index-FINAL.html** - Versão completa corrigida
+
+---
+
+## 🚀 Deploy:
+
+```powershell
+cd C:\Users\carlo\electoralintegrity.org
+```
+
+```powershell
+# Baixe index-FINAL.html e substitua o index.html existente
+# Ou copie o conteúdo e cole no seu index.html
+```
+
+```powershell
+git add index.html
+```
+
+```powershell
+git status
+```
+
+```powershell
+git commit -m "Fix image file paths and complete social media meta tags"
+```
+
+```powershell
+git push origin main
+```
+
+---
+
+## ✅ Validação:
+
+Após o deploy, verifique:
+1. Site carrega sem erros de imagem
+2. Logo aparece na navegação
+3. Logo aparece no footer
+4. Favicon aparece na aba do navegador
+5. Compartilhamento em redes sociais mostra preview correto
+
+---
+
+## 📊 Resumo das Correções:
+
+| Item | Status Antes | Status Depois |
+|------|-------------|---------------|
+| Logo navegação | ❌ Nome errado | ✅ Corrigido |
+| Logo footer | ✅ Correto | ✅ Mantido |
+| favicon.ico | ❌ Não existe | ✅ Removido |
+| favicon.png | ✅ Correto | ✅ Mantido |
+| Apple touch icon | ❌ Nome errado | ✅ Corrigido |
+| Social share | ✅ Correto | ✅ Mantido |
+| Emojis | ❌ Corrompidos | ✅ Corrigidos |
+| Meta tags sociais | ❌ Incompletas | ✅ Completas |
