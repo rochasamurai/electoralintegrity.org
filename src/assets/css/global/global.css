@@ -16,3 +16,1263 @@
 /* @import-glob 'tests/*.css' layer(test); */
 
 @import 'tailwindcss/utilities' layer(tailwindUtilities);
+
+/* ================================
+   ELIS CUSTOM STYLES
+   ================================ */
+
+/* --------------------------------
+   GLOBAL ADJUSTMENTS
+   -------------------------------- */
+
+/* Offset body to account for the fixed header */
+body {
+  padding-top: 70px;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Smooth scroll with offset for in-page anchors */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+section[id] {
+  scroll-margin-top: 100px;
+}
+
+/* --------------------------------
+   HEADER & NAVIGATION
+   -------------------------------- */
+
+/* Main ELIS header bar */
+.header-elis {
+  background: #1B2332;              /* Dark navy background for the top bar */
+  padding: 0.6rem 0;                /* Vertical padding (slightly slimmer on mobile) */
+  position: fixed;                  /* Keep the header fixed at the top while scrolling */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;                    /* Ensure the header sits above hero and content */
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3); /* Soft shadow to separate header from hero */
+}
+
+@media (min-width: 768px) {
+  .header-elis {
+    padding: 0.8rem 0;              /* A bit more breathing room on larger screens */
+  }
+}
+
+/* Header inner container */
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Main navigation */
+.main-nav {
+  background: transparent !important;
+}
+
+.nav-list {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  margin: 0;
+}
+
+/* Navigation links */
+.nav-list a {
+  color: white !important;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  background: transparent !important;
+  padding: 0.5rem 0;
+}
+
+.nav-list a:hover {
+  color: #d4af37 !important;
+}
+
+/* Support button in the navigation – high specificity */
+.nav-list a.nav-btn-support,
+a.nav-btn-support {
+  background: linear-gradient(135deg, #CFAA32 0%, #B8941F 100%) !important;
+  color: #1a2332 !important;
+  padding: 0.65rem 1.8rem !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.nav-list a.nav-btn-support:hover,
+a.nav-btn-support:hover {
+  background: linear-gradient(135deg, #E0BB43 0%, #CFAA32 100%) !important;
+  color: #1a2332 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(207, 170, 50, 0.3) !important;
+}
+
+/* --------------------------------
+   HERO SECTION
+   -------------------------------- */
+
+/* ELIS hero with full-height background image and overlay */
+.hero-elis {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+
+  /* Pull the hero slightly under the fixed header */
+  margin-top: -72px; /* Adjust if header height changes */
+
+  /* Top padding keeps the text clear of the header */
+  padding: 7rem 2rem 4rem;
+
+  /* Make the hero fill the viewport height */
+  min-height: 100vh;
+
+  color: #ffffff;
+
+  /* Fallback background for older browsers (PNG only) */
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.30)
+    ),
+    url("/assets/images/hero-background.png");
+
+  /* Prefer WebP where supported, with PNG as a fallback */
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.30)
+    ),
+    image-set(
+      url("/assets/images/hero-background.webp") type("image/webp"),
+      url("/assets/images/hero-background.png") type("image/png")
+    );
+
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  .hero-elis {
+    min-height: 100vh;
+    padding: 6rem 1.5rem 3rem;
+    background-position: center 20%;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Match hero content width and padding with the main header */
+.hero-content {
+  max-width: 1200px;  /* Same value as .header-content */
+  margin: 0 auto;
+  padding: 0 2rem;    /* Same horizontal padding as the header */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Hero text animation */
+.hero-text {
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Main hero heading – Playfair Display (serif) */
+.hero-title {
+  color: white;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700 !important;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.02em;
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* Hero subtitle – Inter (sans-serif) */
+.hero-subtitle {
+  color: #f1f5f9;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  font-weight: 400;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Container for primary/secondary buttons */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Primary hero button – Support (gold gradient) */
+.btn-primary {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background: linear-gradient(135deg, #CFAA32 0%, #B8941F 100%);
+  color: #1a2332;
+  box-shadow: 0 10px 30px rgba(207, 170, 50, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(207, 170, 50, 0.4);
+  background: linear-gradient(135deg, #E0BB43 0%, #CFAA32 100%);
+}
+
+/* Secondary hero button – Learn more (outline) */
+.btn-secondary {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background: transparent;
+  color: white;
+  border: 2px solid #d4af37;
+}
+
+.btn-secondary:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: #E0BB43;
+  transform: translateY(-3px);
+}
+
+/* Animation container for the (optional) floating card */
+.hero-visual {
+  animation: fadeInRight 1s ease-out 0.3s both;
+}
+
+/* --------------------------------
+   FLOATING CARD
+   -------------------------------- */
+
+/* Floating card – compact version that matches the current hero layout */
+.floating-card {
+  background: linear-gradient(135deg, #222E41 0%, #2A3847 100%);
+  border: 3px solid #d4af37;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  text-align: center;
+  max-width: 350px;
+}
+
+.floating-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(212, 175, 55, 0.4);
+  border-color: #f4d56f;
+}
+
+/* Lucide icon inside the floating card */
+.card-icon {
+  margin-bottom: 1.5rem;
+}
+
+.card-icon svg {
+  width: 56px;
+  height: 56px;
+  stroke: #d4af37;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+}
+
+/* Floating card title – Playfair Display */
+.floating-card h3 {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  letter-spacing: -0.01em;
+}
+
+/* Floating card body text – Inter */
+.floating-card p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  font-weight: 300;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* --------------------------------
+   ANIMATIONS
+   -------------------------------- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ================================
+   GENERIC SECTIONS
+   ================================ */
+
+/* Default container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Default section spacing */
+section {
+  padding: 3rem 0;
+}
+
+/* Section header wrapper */
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Section titles – Playfair Display */
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #1a2332;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* Section introduction text */
+.section-intro {
+  font-size: 1.25rem;
+  color: #475569;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Per-section padding overrides */
+.section-about,
+.section-deliverables,
+.section-research,
+.section-tools {
+  padding: 3rem 0 2rem 0;
+}
+
+.section-support {
+  padding: 3rem 0;
+}
+
+/* --------------------------------
+   ABOUT SECTION
+   -------------------------------- */
+
+.section-about {
+  background: #f8fafc;
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.about-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon block in the About cards */
+.card-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #1B2332 0%, #2A3643 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.card-icon-wrapper svg {
+  stroke: #d4af37;
+  width: 48px;
+  height: 48px;
+}
+
+/* About card titles – Playfair Display */
+.card-title {
+  font-size: 1.5rem;
+  color: #1a2332;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* About card description */
+.card-description {
+  color: #64748b;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* --------------------------------
+   DELIVERABLES SECTION
+   -------------------------------- */
+
+.section-deliverables {
+  background: #ffffff;
+}
+
+/* Grid for the five deliverable cards */
+.deliverables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Individual deliverable card */
+.deliverable-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Golden accent bar on the left edge (appears on hover) */
+.deliverable-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #CFAA32 0%, #B8941F 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Card hover state – subtle lift and stronger border */
+.deliverable-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
+.deliverable-card:hover::before {
+  opacity: 1;
+}
+
+/* Deliverable number in gold, aligned with the SLR Agent visual language */
+.deliverable-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #CFAA32;
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+/* Deliverable title – Playfair Display */
+.deliverable-title {
+  font-size: 1.25rem;
+  color: #1a2332;
+  margin-bottom: 0.65rem;
+  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* Deliverable body text */
+.deliverable-description {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Deliverable timeline shown as a status-style badge */
+.deliverable-timeline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(207, 170, 50, 0.08);
+  color: #B8941F;
+}
+
+/* Impact box at the bottom of the section */
+.impact-box {
+  background: linear-gradient(135deg, #1B2332 0%, #2A3643 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.impact-icon svg {
+  stroke: #d4af37;
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+}
+
+.impact-content {
+  flex: 1;
+}
+
+.impact-title {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+.impact-description {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* --------------------------------
+   RESEARCH SECTION (METHODOLOGY)
+   -------------------------------- */
+
+.section-research {
+  background: #f8fafc;
+}
+
+/* Two-column grid of methodology phases on desktop */
+.research-phases {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Individual methodology phase card */
+.phase-item {
+  background: white;
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.phase-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Golden number badge on a midnight-blue square */
+.phase-number {
+  width: 50px;
+  height: 50px;
+  background: #191970;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4af37;
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  position: absolute;
+  top: 1.75rem;
+  left: 1.75rem;
+}
+
+/* Phase content with left margin to clear the badge */
+.phase-content {
+  margin-left: 70px;
+}
+
+/* Phase title – Playfair Display */
+.phase-title {
+  font-size: 1.25rem;
+  color: #1a2332;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* Phase description copy */
+.phase-description {
+  color: #64748b;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+/* Status badge (Completed / In progress / Upcoming) */
+.phase-status {
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-left: 70px;
+}
+
+.phase-status.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.phase-status.in-progress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.phase-status.upcoming {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+/* --------------------------------
+   TOOLS SECTION
+   -------------------------------- */
+
+.section-tools {
+  background: white;
+}
+
+/* Grid for the ELIS tools */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.tool-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.tool-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+}
+
+/* Placeholder style for tools that are not yet launched */
+.tool-card-placeholder {
+  opacity: 0.8;
+  border-style: dashed;
+}
+
+/* Tool card header */
+.tool-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Tool icon container */
+.tool-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #1B2332 0%, #2A3643 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tool-icon svg {
+  stroke: #d4af37;
+  width: 40px;
+  height: 40px;
+}
+
+/* Tool title – Playfair Display */
+.tool-title {
+  font-size: 1.5rem;
+  color: #1a2332;
+  font-weight: 600;
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Tool description text */
+.tool-description {
+  color: #64748b;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+/* Tag list for key features */
+.tool-features {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Individual tool tag */
+.tool-tag {
+  padding: 0.35rem 0.75rem;
+  background: rgba(212, 175, 55, 0.1);
+  color: #B8941F;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Tool footer actions */
+.tool-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Link to GitHub or documentation */
+.tool-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1a2332;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.tool-link:hover {
+  color: #d4af37;
+  transform: translateX(3px);
+}
+
+.tool-link svg {
+  stroke: currentColor;
+}
+
+/* Status chip for each tool */
+.tool-status {
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.tool-status.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.tool-status.upcoming {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+/* Default status (neither active nor upcoming) */
+.tool-status:not(.active):not(.upcoming) {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* GitHub call-to-action block */
+.github-cta {
+  background: linear-gradient(135deg, #1B2332 0%, #2A3643 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.github-icon {
+  flex-shrink: 0;
+}
+
+.github-icon svg {
+  stroke: #d4af37;
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+}
+
+.github-content {
+  flex: 1;
+}
+
+.github-title {
+  font-size: 1.75rem;
+  color: white;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.github-description {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* --------------------------------
+   SUPPORT SECTION
+   -------------------------------- */
+
+.section-support {
+  background: linear-gradient(135deg, #2A3643 0%, #1B2332 100%);
+  color: white;
+}
+
+/* Support section title in white */
+.section-support .section-title {
+  color: white;
+}
+
+/* Two-column layout for the support copy and stats */
+.support-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Introductory paragraph for support */
+.support-intro {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+}
+
+/* Support modalities heading block */
+.support-ways {
+  margin-bottom: 1.5rem;
+}
+
+.support-ways h3 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+  color: #d4af37;
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* List of specific support options */
+.support-list {
+  list-style: none;
+  padding: 0;
+}
+
+.support-list li {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.support-list li:last-child {
+  border-bottom: none;
+}
+
+.support-list strong {
+  color: #d4af37;
+}
+
+/* Row of support buttons below the copy */
+.support-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* Stats row at the bottom of the support section */
+.support-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+/* Support stat card */
+.stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #d4af37;
+  transform: translateY(-3px);
+}
+
+/* Large number in the stat box */
+.stat-number {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #d4af37;
+  font-family: 'Playfair Display', Georgia, serif;
+  margin-bottom: 0.5rem;
+}
+
+/* Stat label under the number */
+.stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------
+   FOOTER
+   -------------------------------- */
+
+/* Golden divider line at the very top of the footer */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;  /* Start exactly at the top edge of the footer */
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    #d4af37 20%,
+    #cfaa32 50%,
+    #d4af37 80%,
+    transparent 100%
+  );
+}
+
+/* Remove the external margin between the last section and the footer */
+.flow > footer.site-footer {
+  margin-block-start: 0;
+}
+
+/* Footer container – spacing is now fully internal */
+.site-footer {
+  position: relative;            /* Needed for the ::before positioning */
+  background: #0f1820;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 4.5rem 0 1.75rem;     /* Top padding for content, not for the line */
+}
+
+/* Main footer grid */
+.footer-content {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  gap: 4rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Brand block in the footer */
+.footer-brand {
+  max-width: 300px;
+}
+
+/* Footer logo sizing */
+.footer-logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+/* Tagline under the logo */
+.footer-tagline {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+/* Column groups for footer links */
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Footer column heading */
+.footer-heading {
+  color: #d4af37;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Footer navigation list */
+.footer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-menu li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-menu a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.footer-menu a:hover {
+  color: #d4af37;
+}
+
+/* Bottom meta area with copyright and affiliation */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.75rem;
+  text-align: center;
+}
+
+.footer-copyright,
+.footer-affiliation {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0.5rem 0;
+}
+
+.footer-copyright a,
+.footer-affiliation a {
+  color: #d4af37;
+  text-decoration: none;
+}
+
+.footer-copyright a:hover,
+.footer-affiliation a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------
+   RESPONSIVE BREAKPOINTS
+   -------------------------------- */
+
+/* Hero responsiveness */
+@media (max-width: 968px) {
+  .hero-content {
+    grid-template-columns: 1fr;   /* Kept for backwards compatibility, ignored by flex */
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+}
+
+/* Mobile navigation tweaks */
+@media (max-width: 768px) {
+  .nav-list {
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-list a.nav-btn-support,
+  a.nav-btn-support {
+    padding: 0.6rem 1.2rem !important;
+  }
+}
+
+/* Tablet and mobile – generic sections */
+@media (max-width: 968px) {
+  section {
+    padding: 2.5rem 0;
+  }
+
+  .section-about,
+  .section-deliverables,
+  .section-research,
+  .section-tools {
+    padding: 2.5rem 0 1.5rem 0;
+  }
+
+  .section-support {
+    padding: 2.5rem 0;
+  }
+
+  .about-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .deliverables-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .research-phases {
+    grid-template-columns: 1fr;
+  }
+
+  .support-content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .support-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .github-cta {
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem;
+  }
+}
+
+/* Small mobile – tighter spacing and font adjustments */
+@media (max-width: 640px) {
+  section {
+    padding: 2rem 0;
+  }
+
+  .section-about,
+  .section-deliverables,
+  .section-research,
+  .section-tools {
+    padding: 2rem 0 1rem 0;
+  }
+
+  .section-support {
+    padding: 2rem 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-intro {
+    font-size: 1rem;
+  }
+
+  .stat-number {
+    font-size: 1.75rem;
+  }
+
+  .support-stats {
+    grid-template-columns: 1fr;
+  }
+}

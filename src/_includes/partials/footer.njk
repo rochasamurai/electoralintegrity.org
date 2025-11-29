@@ -1,61 +1,45 @@
-<footer class="site-footer mt-l-xl p-s-m">
-  <div class="wrapper">
-    <div class="cluster gutter-xs">
-      <nav class="cluster text-step-0" aria-label="{{ meta.navigation.ariaBottom }}">
-        &copy; {% year %}
-        <a href="/" {{ indicateActiveHome }}
-          ><span class="font-display">{{ meta.siteName }}</span> <small>{{ pkg.version }}</small>
-        </a>
-
-        {% for item in navigation.bottom %}
-          <a
-            href="{{ item.url }}"
-            {{
-              helpers.getLinkActiveState(item.url,
-              page.url)
-              |
-              safe
-            }}
-            >{{ item.text }}</a
-          >
-        {% endfor %}
-      </nav>
-
-      <nav class="cluster" aria-label="{{ meta.navigation.ariaPlatforms }}">
-        <!-- gets the first item from the feed loop set in meta -->
-        <a
-          href="{{ meta.blog.feedLinks[0].url }}"
-          rel="alternate"
-          type="{{ meta.blog.feedLinks[0].type }}"
-          class="button"
-          data-icon
-        >
-          <span class="visually-hidden">{{ meta.blog.feedLinks[0].title }}</span>
-          {% svg "misc/rss" %}
-        </a>
-
-        {% for key, value in personal.platforms %}
-          {% if value != "" %}
-            <!-- regular platforms -->
-            <a class="no-indicator button" data-icon href="{{ value }}" rel="me">
-              <span class="visually-hidden">{{ key | capitalize }}</span>
-              {% svg 'platform/' + key %}
-            </a>
-          {% endif %}
-        {% endfor %}
-      </nav>
+{# ==================== FOOTER ==================== #}
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="/assets/images/elis-logo.png" alt="ELIS Logo" class="footer-logo">
+        <p class="footer-tagline">Evidence-based strategies for electoral integrity</p>
+      </div>
+      
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4 class="footer-heading">Research</h4>
+          <ul class="footer-menu">
+            <li><a href="#about">About ELIS</a></li>
+            <li><a href="#deliverables">Deliverables</a></li>
+            <li><a href="#research">Methodology</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4 class="footer-heading">Resources</h4>
+          <ul class="footer-menu">
+            <li><a href="#support">Support Us</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/legal">Terms of Use</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4 class="footer-heading">Connect</h4>
+          <ul class="footer-menu">
+            <li><a href="mailto:elis@electoralintegrity.org">Email</a></li>
+            <li><a href="https://github.com/rochasamurai/ELIS-SLR-Agent/" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://x.com/ELIStrategies" target="_blank" rel="noopener">X (Twitter)</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-
-    {% include 'partials/theme-switch.njk' %}
-
-    <aside class="creator | cluster gutter-2xs text-step-min-1 mt-xl">
-      Made with <span class="visually-hidden">love</span> <span>{% svg "misc/heart" %}</span> and
-      <a class="no-indicator" href="https://www.11ty.dev/">
-        <span class="visually-hidden">Eleventy</span>
-        {% svg "misc/11ty" %}
-      </a>
-      by
-      <a href="{{ meta.creator.website }}">{{ meta.creator.name }}</a>
-    </aside>
+    
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025-2026 ELIS Electoral Integrity Strategies.</p>
+      <p class="footer-affiliation">A research project by <a href="https://www.imperial.ac.uk/business-school/" target="_blank" rel="noopener">Imperial College Business School</a></p>
+    </div>
   </div>
 </footer>

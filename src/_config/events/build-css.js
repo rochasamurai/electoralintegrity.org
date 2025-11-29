@@ -9,6 +9,7 @@ import cssnano from 'cssnano';
 import fg from 'fast-glob';
 
 const buildCss = async (inputPath, outputPaths) => {
+  console.log(`  ✓ Processing: ${inputPath}`);
   const inputContent = await fs.readFile(inputPath, 'utf-8');
 
   const result = await postcss([
@@ -22,12 +23,16 @@ const buildCss = async (inputPath, outputPaths) => {
   for (const outputPath of outputPaths) {
     await fs.mkdir(path.dirname(outputPath), {recursive: true});
     await fs.writeFile(outputPath, result.css);
+    console.log(`  ✓ Written to: ${outputPath}`);
   }
 
   return result.css;
 };
 
 export const buildAllCss = async () => {
+  console.log('\n🔧 BUILD CSS: Starting...');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  
   const tasks = [];
 
   tasks.push(buildCss('src/assets/css/global/global.css', ['src/_includes/css/global.css']));
@@ -45,4 +50,7 @@ export const buildAllCss = async () => {
   }
 
   await Promise.all(tasks);
+  
+  console.log('✅ BUILD CSS: Complete!');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 };

@@ -38,9 +38,23 @@ export default {
       navigation: `${viewportTokens.navigation}px`
     },
     colors,
+    midnight: {
+      DEFAULT: '#1a2332',
+      light: '#2a3d52',
+      dark: '#0f1820',
+    },
+    gold: {
+      DEFAULT: '#d4af37',
+      light: '#f4d56f',
+      dark: '#b8941f',
+    },
     borderRadius,
     spacing,
     fontFamily,
+      display: ['Playfair Display', 'Georgia', 'serif'],
+      body: ['Inter', 'system-ui', 'sans-serif'],
+      sans: ['Inter', 'system-ui', 'sans-serif'],
+      serif: ['Playfair Display', 'Georgia', 'serif'],
     fontSize,
     fontWeight,
     lineHeight,
@@ -81,11 +95,6 @@ export default {
 
   // Prevents Tailwind's core components
   blocklist: ['container'],
-
-  // Prevents Tailwind from generating that wall of empty custom properties
-  experimental: {
-    optimizeUniversalDefaults: true
-  },
 
   plugins: [
     // Generates custom property values from tailwind config

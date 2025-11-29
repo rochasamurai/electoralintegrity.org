@@ -11,3 +11,7 @@ src/_includes/scripts
 
 # secret data
 .env
+
+# Local backup folders and old page snapshots
+backup_pages_*/
+*.old
