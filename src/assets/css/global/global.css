@@ -1,4 +1,5 @@
 @import 'tailwindcss/base' layer(tailwindBase);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
 @import 'base/reset.css' layer(reset);
 @import 'base/fonts.css' layer(fonts);
@@ -25,20 +26,32 @@
    GLOBAL ADJUSTMENTS
    -------------------------------- */
 
-/* Offset body to account for the fixed header */
-body {
-  padding-top: 70px;
-  font-family: 'Inter', system-ui, sans-serif;
+:root {
+  --header-height: 72px; /* ajuste fino depois, mas 72px costuma ficar perto do teu header */
 }
 
 /* Smooth scroll with offset for in-page anchors */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-padding-top: 80px;
+}
+
+/* Offset body to account for the fixed header */
+body {
+  margin: 0;        /* removes default browser margin */
+  padding: 0;       /* removes any default padding */
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #242E3C; 
+}
+
+/* Main content starts just below the fixed header */
+main {
+  padding-top: 0;
 }
 
 section[id] {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 80px;
 }
 
 /* --------------------------------
@@ -47,14 +60,14 @@ section[id] {
 
 /* Main ELIS header bar */
 .header-elis {
-  background: #1B2332;              /* Dark navy background for the top bar */
-  padding: 0.6rem 0;                /* Vertical padding (slightly slimmer on mobile) */
-  position: fixed;                  /* Keep the header fixed at the top while scrolling */
+  background: #1B2332;          /* mesma cor do topo do hero */
+  padding: 0.8rem 0;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;                    /* Ensure the header sits above hero and content */
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3); /* Soft shadow to separate header from hero */
+  z-index: 1000;
+  box-shadow: none; 
 }
 
 @media (min-width: 768px) {
@@ -63,14 +76,37 @@ section[id] {
   }
 }
 
-/* Header inner container */
+/* Header inner container – aligns with hero padding on both sides */
 .header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  width: 100%;                 /* Use the full viewport width */
+  max-width: none;             /* Remove the 1200px cap so it matches the hero */
+  margin: 0;                   /* No auto–centred box; rely only on padding */
+  padding: 0 4rem;             /* 4rem on both sides – same as hero content */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Logo on the left, nav + Support on the right */
   align-items: center;
+}
+
+/* Text logo “E L I S” */
+.header-logo-text {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 850;               /* Heavier weight so the logo feels more prominent */
+  font-size: 2.5rem;             /* Subtle size; adjust if you want it larger or smaller */
+  letter-spacing: 0.4em;         /* Adds spacing between letters: E L I S */
+  text-transform: uppercase;      /* Ensures consistent uppercase rendering */
+  color: #ffffff;
+
+  text-decoration: none !important; /* Removes the default underline from the link */
+  border-bottom: none;              /* Extra safety: no bottom border acting as underline */
+  background: transparent !important;
+
+  line-height: 1;                 /* Tight line-height so the logo sits neatly in the header */
+  white-space: nowrap;            /* Prevents wrapping of the logo text */
+
+  display: flex;                  /* Allows precise vertical alignment */
+  align-items: center;            /* Vertically centers the text within the logo area */
+  padding: 0;                     /* Removes any extra vertical padding from generic link styles */
+  margin: 0;
 }
 
 /* Main navigation */
@@ -135,102 +171,90 @@ a.nav-btn-support:hover {
    HERO SECTION
    -------------------------------- */
 
-/* ELIS hero with full-height background image and overlay */
+/* ELIS hero with two-column split layout */
 .hero-elis {
   position: relative;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* 50% / 50% */
   width: 100%;
   margin: 0;
-
-  /* Pull the hero slightly under the fixed header */
-  margin-top: -72px; /* Adjust if header height changes */
-
-  /* Top padding keeps the text clear of the header */
-  padding: 7rem 2rem 4rem;
-
-  /* Make the hero fill the viewport height */
   min-height: 100vh;
-
   color: #ffffff;
-
-  /* Fallback background for older browsers (PNG only) */
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.55),
-      rgba(0, 0, 0, 0.30)
-    ),
-    url("/assets/images/hero-background.png");
-
-  /* Prefer WebP where supported, with PNG as a fallback */
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.55),
-      rgba(0, 0, 0, 0.30)
-    ),
-    image-set(
-      url("/assets/images/hero-background.webp") type("image/webp"),
-      url("/assets/images/hero-background.png") type("image/png")
-    );
-
-  background-size: cover;
-  background-position: center 40%;
-  background-repeat: no-repeat;
+  background: linear-gradient(135deg, #1B2332 0%, #2A3847 100%);
+  gap: 0;  
 }
 
-@media (max-width: 768px) {
-  .hero-elis {
-    min-height: 100vh;
-    padding: 6rem 1.5rem 3rem;
-    background-position: center 20%;
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-/* Match hero content width and padding with the main header */
+/* Left column – text block aligned with ELIS logo */
 .hero-content {
-  max-width: 1200px;  /* Same value as .header-content */
-  margin: 0 auto;
-  padding: 0 2rem;    /* Same horizontal padding as the header */
+  padding: 8rem 2rem 3rem 4rem;   /* Top, right, bottom, left – 2rem matches header-content */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
+  background: transparent;
+  outline: none;
 }
 
-/* Hero text animation */
+/* Right column – image aligned with Support button */
+.hero-visual {
+  position: relative;
+  padding: 4rem 4rem 3rem 0;    /* top, right, bottom, left */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: transparent;
+  outline: none;
+}
+
+/* Image card with rounded corners - not full height */
+.hero-visual-card {
+  width: 100%;
+  max-width: 720px;
+}
+
+.hero-visual-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain; 
+}
+
+/* Hero text wrapper */
 .hero-text {
   animation: fadeInUp 1s ease-out;
+  max-width: 720px;  
 }
 
-/* Main hero heading – Playfair Display (serif) */
+/* Main hero heading - single line or wrapped naturally */
 .hero-title {
   color: white;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(3rem, 3.5vw, 5rem);
   font-weight: 700 !important;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.75rem;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   font-family: 'Playfair Display', Georgia, serif !important;
 }
 
-/* Hero subtitle – Inter (sans-serif) */
+/* Hero subtitle */
 .hero-subtitle {
-  color: #f1f5f9;
+  color: #e2e8f0;
   font-size: 1.25rem;
-  line-height: 1.8;
+  line-height: 1.75;
   margin-bottom: 2.5rem;
-  max-width: 600px;
   font-weight: 400;
   font-family: 'Inter', system-ui, sans-serif;
+  max-width: 620px;
 }
 
 /* Container for primary/secondary buttons */
 .hero-buttons {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1.25rem;
+  min-width: 450px; /* Ensure enough space for both buttons */
 }
 
 /* Primary hero button – Support (gold gradient) */
@@ -278,9 +302,93 @@ a.nav-btn-support:hover {
   transform: translateY(-3px);
 }
 
-/* Animation container for the (optional) floating card */
-.hero-visual {
-  animation: fadeInRight 1s ease-out 0.3s both;
+/* --------------------------------
+   MOBILE RESPONSIVE - HERO SECTION
+   -------------------------------- */
+
+/* Tablet breakpoint - Stack columns vertically */
+@media (max-width: 968px) {
+  .hero-elis {
+    grid-template-columns: 1fr;       /* single column */
+    min-height: auto;
+  }
+  
+  .hero-content {
+    padding: 4.5rem 2rem 3rem 2rem;   /* smaller top padding on tablet */
+    text-align: center;
+    align-items: center;
+  }
+  
+  .hero-text {
+    max-width: 100%;
+  }
+  
+  .hero-visual {
+    order: 2;                         /* image below text */
+    padding: 2rem 2rem 3rem 2rem;
+    justify-content: center;
+    min-height: auto;
+  }
+  
+  /* Keep image proportions - change height to auto */
+  .hero-visual-card {    
+    max-width: 480px;
+/*  width: 100%;  
+    height: auto;
+    aspect-ratio: 9 / 16;Maintain original image proportions */    
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+}
+
+/* Mobile breakpoint - Further adjustments */
+@media (max-width: 768px) {
+  .hero-elis {
+    margin-top: 0;
+  }
+  
+  .hero-content {
+    padding: 4rem 1.5rem 3rem 1.5rem; /* closer to header on mobile */
+    text-align: center;
+    align-items: center;
+  }
+  
+  .hero-visual {
+    min-height: 40vh;
+    padding: 1.5rem 1.5rem 3rem 1.5rem;
+    justify-content: center;
+  }
+  
+  .hero-visual-card {
+    min-height: 260px;
+  }
+   
+  .hero-title {
+    font-size: clamp(1.875rem, 5vw, 2.5rem);
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 0.9rem 2rem;
+  }
 }
 
 /* --------------------------------

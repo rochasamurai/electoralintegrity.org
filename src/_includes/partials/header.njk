@@ -2,12 +2,10 @@
   <a href="#main" class="skip-link">{{ meta.skipContent }}</a>
 
   <div class="header-content">
-    <a href="/" class="logo" {{ indicateActiveHome }}>
-      <picture>
-        <source srcset="/assets/images/elis-logo.webp" type="image/webp">
-        <img src="/assets/images/elis-logo.png" alt="ELIS Logo" style="height: 48px; width: auto;" decoding="async">
-      </picture>
+    <a href="/" class="header-logo-text" aria-label="ELIS – Electoral Integrity System">
+      ELIS
     </a>
+
     {% include "partials/main-nav.njk" %}
   </div>
 </header>
