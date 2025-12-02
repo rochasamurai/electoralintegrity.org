@@ -1,10 +1,19 @@
 <header class="header-elis">
   <a href="#main" class="skip-link">{{ meta.skipContent }}</a>
-
   <div class="header-content">
-    <a href="/" class="header-logo-text" aria-label="ELIS – Electoral Integrity System">
+    <a href="/" class="header-logo-text" aria-label="ELIS Electoral Integrity Strategies">
       ELIS
     </a>
+
+    <!-- Add mobile menu button -->
+    <button 
+      class="mobile-menu-toggle" 
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="main-nav"
+    >
+      <span class="hamburger-icon"></span>
+    </button>
 
     {% include "partials/main-nav.njk" %}
   </div>

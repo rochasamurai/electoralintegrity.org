@@ -1,15 +1,24 @@
-<section class="hero-elis">
+<section class="hero-elis" aria-labelledby="hero-title" itemscope itemtype="https://schema.org/WebPageElement">
   <!-- Left Column: Content -->
   <div class="hero-content">
     <div class="hero-text">
-      <h1 class="hero-title">Evidence-Based<br>Research on<br>Electoral Integrity</h1>
-      <p class="hero-subtitle">
+      
+      <h1 class="hero-title" itemprop="headline">
+        <span class="title-line">Evidence-Based</span>
+        <span class="title-line">Research on</span>
+        <span class="title-line">Electoral Integrity</span>
+      </h1>
+     
+      <p class="hero-subtitle" itemprop="description">
         Synthesizing 35 years of research to identify what actually works to 
         protect elections. ELIS provides evidence-based guidance for election 
         officials, policymakers, and democracy advocates.
       </p>
+      
       <div class="hero-buttons">
-        <a href="#support" class="btn-primary">Support This Research</a>
+        <a href="#support" class="btn-primary" itemprop="potentialAction">
+          Support This Research
+        </a>
         <a href="#about" class="btn-secondary">Learn More</a>
       </div>
     </div>
@@ -18,11 +27,29 @@
   <!-- Right Column: Visual -->
   <div class="hero-visual">
     <div class="hero-visual-card">
-      <img
-        src="/assets/images/ELIS-hero-image.png"
-        alt="Ballot box and world map"
-        class="hero-visual-img"
-      />
+      <picture>
+        <source 
+          media="(max-width: 480px)"
+          srcset="/assets/images/ELIS-hero-image-mobile.webp"
+          type="image/webp"
+        />
+        <source 
+          media="(max-width: 968px)"
+          srcset="/assets/images/ELIS-hero-image-tablet.webp"
+          type="image/webp"
+        />
+        <source 
+          srcset="/assets/images/ELIS-hero-image.webp"
+          type="image/webp"
+        />
+        <img 
+          src="/assets/images/ELIS-hero-image.png" 
+          alt="..."
+          loading="lazy"
+          width="650"
+          height="410"
+        />
+      </picture>
     </div>
   </div>
 </section>

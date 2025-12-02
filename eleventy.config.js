@@ -99,16 +99,19 @@ export default async function (eleventyConfig) {
 
   // --------------------- Passthrough File Copy
 
-  // -- same path (copiar fontes, TODAS as imagens e og-images)
+  // -- Same path (copy fonts, all images and og-images)
   ['src/assets/fonts/', 'src/assets/images', 'src/assets/og-images'].forEach(path =>
     eleventyConfig.addPassthroughCopy(path)
   );
+  
+  // -- JavaScript files
+  eleventyConfig.addPassthroughCopy('src/assets/js');
 
   eleventyConfig.addPassthroughCopy({
-    // -- to root
+    // -- Copy to root directory
     'src/assets/images/favicon/*': '/',
 
-    // -- node_modules
+    // -- Third-party components from node_modules
     'node_modules/lite-youtube-embed/src/lite-yt-embed.{css,js}': `assets/components/`
   });
 

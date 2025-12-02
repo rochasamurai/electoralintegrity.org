@@ -27,7 +27,8 @@
    -------------------------------- */
 
 :root {
-  --header-height: 72px; /* ajuste fino depois, mas 72px costuma ficar perto do teu header */
+  --header-height: 72px; /* Fixed header height for offset calculations */
+  --page-max-width: 1200px; /* Maximum content width for large screens */
 }
 
 /* Smooth scroll with offset for in-page anchors */
@@ -42,7 +43,7 @@ body {
   padding: 0;       /* removes any default padding */
   height: 100%;
   font-family: 'Inter', system-ui, sans-serif;
-  background: #242E3C; 
+  background-color: #273342; 
 }
 
 /* Main content starts just below the fixed header */
@@ -60,7 +61,7 @@ section[id] {
 
 /* Main ELIS header bar */
 .header-elis {
-  background: #1B2332;          /* mesma cor do topo do hero */
+  background: #1B2332; /* Matches hero section background */
   padding: 0.8rem 0;
   position: fixed;
   top: 0;
@@ -79,9 +80,8 @@ section[id] {
 /* Header inner container – aligns with hero padding on both sides */
 .header-content {
   width: 100%;                 /* Use the full viewport width */
-  max-width: none;             /* Remove the 1200px cap so it matches the hero */
-  margin: 0;                   /* No auto–centred box; rely only on padding */
-  padding: 0 4rem;             /* 4rem on both sides – same as hero content */
+  padding-left: max(2rem, calc((100vw - var(--page-max-width)) / 2 + 2rem));
+  padding-right: max(2rem, calc((100vw - var(--page-max-width)) / 2 + 2rem));
   display: flex;
   justify-content: space-between; /* Logo on the left, nav + Support on the right */
   align-items: center;
@@ -167,72 +167,321 @@ a.nav-btn-support:hover {
   box-shadow: 0 5px 15px rgba(207, 170, 50, 0.3) !important;
 }
 
+/* ================================
+   MOBILE NAVIGATION MENU
+   Hamburger menu with slide-down navigation for mobile devices.
+   Controlled by mobile-menu.js
+   
+   Desktop (>968px): Hidden (horizontal nav shows)
+   Mobile (<968px): Hamburger → slide-down menu
+   ================================ */
+
+/* Mobile menu toggle button - hidden on desktop */
+.mobile-menu-toggle {
+  display: none; /* Hidden by default on desktop */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+/* Hamburger icon */
+.hamburger-icon {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #ffffff;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 2px;
+  background: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.hamburger-icon::before {
+  top: -8px;
+}
+
+.hamburger-icon::after {
+  bottom: -8px;
+}
+
+/* Active state - X icon */
+.mobile-menu-toggle[aria-expanded="true"] .hamburger-icon {
+  background: transparent;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .hamburger-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .hamburger-icon::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+
+/* Mobile navigation styles */
+@media (max-width: 968px) {
+  /* Show mobile menu toggle */
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  /* Hide nav by default on mobile */
+  .main-nav {
+    position: fixed;
+    top: 72px; /* Below header */
+    left: 0;
+    right: 0;
+    background: #1B2332;
+    padding: 2rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+  /* Show nav when menu is open */
+  .main-nav.mobile-menu-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Stack nav items vertically */
+  .nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav-list li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Full-width nav links */
+  .nav-list a {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.125rem;
+    text-align: left;
+  }
+
+  /* Support button full width on mobile */
+  .nav-list a.nav-btn-support {
+    margin-top: 1rem;
+    text-align: center;
+    padding: 1rem 2rem !important;
+  }
+
+  /* Adjust header logo size on mobile */
+  .header-logo-text {
+    font-size: 2rem; /* Smaller on mobile */
+    letter-spacing: 0.3em;
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 768px) {
+  .header-logo-text {
+    font-size: 1.75rem;
+    letter-spacing: 0.25em;
+  }
+
+  .main-nav {
+    top: 60px; /* Adjust for smaller header */
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .header-logo-text {
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+  }
+
+  .mobile-menu-toggle {
+    padding: 0.25rem;
+  }
+
+  .hamburger-icon {
+    width: 24px;
+  }
+
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    width: 24px;
+  }
+}
+
 /* --------------------------------
-   HERO SECTION
+   HERO TITLE SIZE REDUCTION
+   Replace existing .hero-title styles (lines 233-247)
    -------------------------------- */
+
+/* Main hero heading - REDUCED SIZE */
+.hero-title {
+  color: white;
+  font-size: clamp( 
+    1.5rem,   /* Reduced from 1.75rem - minimum (mobile) */
+    3vw,      /* Reduced from 3.5vw - preferred (scales) */
+    3.5rem    /* Reduced from 5rem - maximum (desktop) */
+  );
+  font-weight: 700 !important;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.03em;
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* Adjust title in intermediate breakpoint */
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: clamp(2rem, 3.5vw, 3rem); /* Adjusted proportionally */
+  }
+}
+
+/* Mobile title adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(1.75rem, 7vw, 2.25rem); /* Adjusted proportionally */
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(1.5rem, 8vw, 2rem); /* Adjusted proportionally */
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* --------------------------------
+   ADDITIONAL MOBILE IMPROVEMENTS
+   -------------------------------- */
+
+/* Prevent body scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Add backdrop when menu is open */
+.mobile-menu-backdrop {
+  display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.mobile-menu-backdrop.active {
+  display: block;
+}
+
+/* Smooth transitions */
+@media (prefers-reduced-motion: reduce) {
+  .main-nav,
+  .hamburger-icon,
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    transition: none;
+  }
+}
+
+/* ================================
+   HERO SECTION
+   Two-column desktop layout with responsive padding system
+   that aligns with header on all screen sizes.
+   
+   Desktop (>968px): Side-by-side text + image
+   Tablet (768-968px): Stacked, centered content
+   Mobile (<768px): Optimized vertical layout
+   ================================ */
 
 /* ELIS hero with two-column split layout */
 .hero-elis {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* 50% / 50% */
+  grid-template-columns: 1fr 1fr; /* 50/50 split */
   width: 100%;
   margin: 0;
+  margin-top: -72px; /* Pull under header */
+  padding-top: 72px; /* Compensate for negative margin */
+  padding-left: max(2rem, calc((100vw - var(--page-max-width)) / 2 + 2rem));
+  padding-right: max(2rem, calc((100vw - var(--page-max-width)) / 2 + 2rem));
   min-height: 100vh;
   color: #ffffff;
-  background: linear-gradient(135deg, #1B2332 0%, #2A3847 100%);
-  gap: 0;  
+  background: #273342;
+  gap: 0;
 }
 
-/* Left column – text block aligned with ELIS logo */
+/* Left column - text content (horizontal padding on parent) */
 .hero-content {
-  padding: 8rem 2rem 3rem 4rem;   /* Top, right, bottom, left – 2rem matches header-content */
+  padding: 8rem 2rem 4rem 0; /* Top, right, bottom, left */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background: transparent;
-  outline: none;
+  background: #273342;
 }
 
-/* Right column – image aligned with Support button */
+/* Right column - remove horizontal padding (hero has it) */
 .hero-visual {
   position: relative;
-  padding: 4rem 4rem 3rem 0;    /* top, right, bottom, left */
+  padding: 6rem 0 4rem 0;  /* Top, right, bottom, left */
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  background: transparent;
-  outline: none;
+  justify-content: flex-start; /* Allows margin-left: auto to work */
 }
 
 /* Image card with rounded corners - not full height */
 .hero-visual-card {
   width: 100%;
-  max-width: 720px;
+  max-width: 650px; /* Add back max-width to control image size */
+  margin-left: auto; /* Aligns image right edge with Support button */
 }
 
 .hero-visual-img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 80vh;
-  object-fit: contain; 
+  max-height: 75vh;
+  object-fit: contain; /* Preserves aspect ratio */
+  object-position: right center; /* Align image content to right */
 }
 
 /* Hero text wrapper */
 .hero-text {
   animation: fadeInUp 1s ease-out;
-  max-width: 720px;  
+  max-width: 600px;  
 }
 
 /* Main hero heading - single line or wrapped naturally */
 .hero-title {
   color: white;
-  font-size: clamp(3rem, 3.5vw, 5rem);
+  font-size: clamp(1.5rem, 3vw, 3.5rem); /* Fluid typography: mobile → desktop */
   font-weight: 700 !important;
   line-height: 1.1;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
   letter-spacing: -0.03em;
   font-family: 'Playfair Display', Georgia, serif !important;
@@ -241,20 +490,19 @@ a.nav-btn-support:hover {
 /* Hero subtitle */
 .hero-subtitle {
   color: #e2e8f0;
-  font-size: 1.25rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.25rem);
   line-height: 1.75;
   margin-bottom: 2.5rem;
   font-weight: 400;
   font-family: 'Inter', system-ui, sans-serif;
-  max-width: 620px;
+  max-width: 550px;
 }
 
 /* Container for primary/secondary buttons */
 .hero-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
-  min-width: 450px; /* Ensure enough space for both buttons */
+  gap: 1.25rem;  
 }
 
 /* Primary hero button – Support (gold gradient) */
@@ -302,46 +550,76 @@ a.nav-btn-support:hover {
   transform: translateY(-3px);
 }
 
+/* Desktop breakpoint */
+@media (min-width: 969px) {
+  .hero-buttons {
+    min-width: 450px;
+  }
+}
+
+@media (min-width: 969px) and (max-width: 1199px) {
+  .hero-visual-card {
+    max-width: 580px; /* Slightly smaller on medium desktops */
+  }
+}
+
 /* --------------------------------
    MOBILE RESPONSIVE - HERO SECTION
    -------------------------------- */
 
+/* Intermediate breakpoint */
+@media (max-width: 1200px) {
+  .hero-elis {
+    grid-template-columns: 45fr 55fr; /* Slightly adjust ratio */
+  }
+  
+  .hero-visual-card {
+    max-width: 550px; /* Reduce image size */
+  }
+  
+  .hero-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
+}
+
 /* Tablet breakpoint - Stack columns vertically */
 @media (max-width: 968px) {
   .hero-elis {
-    grid-template-columns: 1fr;       /* single column */
+    grid-template-columns: 1fr; /* Stack content vertically */
     min-height: auto;
   }
   
   .hero-content {
-    padding: 4.5rem 2rem 3rem 2rem;   /* smaller top padding on tablet */
+    padding: 5rem 3rem 3rem 3rem;
     text-align: center;
-    align-items: center;
+    align-items: center;   
   }
   
   .hero-text {
     max-width: 100%;
+    animation: none; /* Disable fadeInUp on tablet and mobile */
   }
   
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+
   .hero-visual {
-    order: 2;                         /* image below text */
+    order: 2; /* Image appears below text on mobile */
     padding: 2rem 2rem 3rem 2rem;
     justify-content: center;
     min-height: auto;
   }
   
-  /* Keep image proportions - change height to auto */
-  .hero-visual-card {    
-    max-width: 480px;
-/*  width: 100%;  
-    height: auto;
-    aspect-ratio: 9 / 16;Maintain original image proportions */    
+  .hero-visual-card {
+    max-width: 500px; /* Slightly larger for tablet */
+    margin: 0 auto; /* Center image */
   }
-
-  .hero-subtitle {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
+    
+  .hero-visual-img {
+    object-position: center center; /* Center on tablet */
   }
 
   .hero-buttons {
@@ -349,45 +627,114 @@ a.nav-btn-support:hover {
   }
 }
 
-/* Mobile breakpoint - Further adjustments */
+/* Mobile breakpoint */
 @media (max-width: 768px) {
   .hero-elis {
-    margin-top: 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-top: -72px; /* Keep under header */
+    padding-top: 72px;
   }
   
   .hero-content {
-    padding: 4rem 1.5rem 3rem 1.5rem; /* closer to header on mobile */
-    text-align: center;
-    align-items: center;
+    padding: 5rem 0 2.5rem 0; /* Remove horizontal padding */
   }
-  
-  .hero-visual {
-    min-height: 40vh;
-    padding: 1.5rem 1.5rem 3rem 1.5rem;
-    justify-content: center;
-  }
-  
-  .hero-visual-card {
-    min-height: 260px;
-  }
-   
+
   .hero-title {
-    font-size: clamp(1.875rem, 5vw, 2.5rem);
+    font-size: clamp(2rem, 8vw, 2.5rem); /* Responsive scaling */
+    line-height: 1.15;
   }
   
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: clamp(0.95rem, 4vw, 1.125rem);
+    line-height: 1.6;
   }
-  
+    
+  .hero-visual {
+    padding: 2rem 0 3rem 0;
+  }
+
+  .hero-visual-card {
+    max-width: 100%; /* Full width on mobile */
+    transform: translateZ(0); /* Enable GPU acceleration */
+  }
+    
+  .hero-visual-img {
+    max-height: 60vh; /* Reduce on mobile */
+  }
+
   .hero-buttons {
-    flex-direction: column;
-    width: 100%;
+    gap: 1rem;
   }
   
   .btn-primary,
   .btn-secondary {
-    width: 100%;
-    padding: 0.9rem 2rem;
+    min-height: 48px; /* WCAG recommendation */
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small mobile breakpoint */
+@media (max-width: 480px) {
+  .hero-elis {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .hero-content {
+    padding-top: 4rem;
+  }
+  
+  .hero-title {
+    font-size: clamp(1.75rem, 9vw, 2.25rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-visual {
+    padding: 1.5rem 0 2.5rem 0;
+  }
+  
+  .hero-visual-img {
+    max-height: 50vh; /* Further reduce on small mobile */
+  }
+
+  .hero-buttons {
+    gap: 0.875rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY & PERFORMANCE
+   ================================ */
+
+/* Disable hover transforms on touch screens */
+@media (hover: none) {
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none;
+  }
+}
+
+/* Respect user's motion preferences (WCAG 2.1) */
+@media (prefers-reduced-motion: reduce) {
+  .hero-text { 
+    animation: none; 
+  }
+  .btn-primary,
+  .btn-secondary { 
+    transition: none; 
   }
 }
 
@@ -454,6 +801,7 @@ a.nav-btn-support:hover {
    ANIMATIONS
    -------------------------------- */
 
+/* Fade in animation for hero text (desktop only) */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -482,7 +830,7 @@ a.nav-btn-support:hover {
 
 /* Default container */
 .container {
-  max-width: 1200px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   padding: 0 2rem;
 }
