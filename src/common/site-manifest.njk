@@ -4,19 +4,23 @@ eleventyExcludeFromCollections: true
 excludeFromSitemap: true
 ---
 {
-  "name": "{{ meta.siteName }} - {{ meta.siteDescription }}",
-  "short_name": "{{ meta.siteName }}",
-  "start_url": "{{ meta.url }}",
+  "name": "{{ meta.siteName }}",
+  "short_name": "ELIS",
+  "description": "{{ meta.siteDescription }}",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/maskable-icon.png",
@@ -26,6 +30,10 @@ excludeFromSitemap: true
     }
   ],
   "theme_color": "{{ meta.themeColor }}",
-  "background_color": "{{ meta.themeLight }}",
-  "display": "standalone"
+  "background_color": "{{ meta.themeDark }}",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "{{ meta.lang }}",
+  "dir": "ltr",
+  "categories": ["education", "research", "politics"]
 }
