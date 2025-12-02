@@ -15,3 +15,6 @@ src/_includes/scripts
 # Local backup folders and old page snapshots
 backup_pages_*/
 *.old
+
+hero-test.html
+src/hero-debug.njk
