@@ -1,0 +1,33 @@
+{
+  "name": "ELIS - Electoral Integrity Strategies",
+  "short_name": "ELIS",
+  "start_url": "/",
+  "scope": "/",
+  "description": "Evidence-based research on electoral integrity",
+  "orientation": "portrait-primary",
+  "lang": "en-GB",
+  "dir": "ltr",
+
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#1B2332",
+  "background_color": "#273342",
+  "display": "standalone"
+}
