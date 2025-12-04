@@ -15,9 +15,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+    build:
+      runs-on: ubuntu-latest
+      env:
+        NODE_ENV: production
+        URL: https://electoralintegrity.org
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
