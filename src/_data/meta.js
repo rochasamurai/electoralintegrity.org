@@ -18,7 +18,7 @@ export const creator = {
   name: 'Carlos Rocha', // Principal Investigator
   email: 'contact@electoralintegrity.org',
   website: 'https://electoralintegrity.org',
-  social: '' // Add social media if available
+  social: '@ELIStrategies'
 };
 export const pathToSvgLogo = 'src/assets/svg/misc/logo.svg'; // used for favicon generation
 export const themeColor = '#1B2332'; // Updated to match ELIS header color
