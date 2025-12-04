@@ -8,20 +8,37 @@
   {%- endif -%}
 {% endset %}
 
+{% set metaTitle %}
+  {%- if discover.title -%}
+    {{- discover.title -}}
+  {%- elif title -%}
+    {{- title -}}
+  {%- else -%}
+    {{- meta.siteName -}}
+  {%- endif -%}
+{% endset %}
+
 <meta name="description" content="{{ metaDescription }}" />
+<meta name="author" content="{{ meta.author.name }}" />
 <meta name="theme-color" content="{{ meta.themeDark }}" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="{{ meta.themeLight }}" media="(prefers-color-scheme: light)" />
+
 <!-- Search Engines -->
 <meta name="robots" content="index,follow" />
 <meta name="googlebot" content="index,follow" />
+
 <!-- Made with Eleventy! -->
 <meta name="generator" content="{{ eleventy.generator }}" />
+
 <!-- Disable automatic detection and formatting of possible phone numbers -->
 <meta name="format-detection" content="telephone=no" />
-<!-- supports both dark and light color schemes, page author prefers light as default. -->
+
+<!-- Supports both dark and light color schemes -->
 <meta name="color-scheme" content="light dark" />
+
 <!-- Helps prevent duplicate content issues -->
 <link rel="canonical" href="{{ meta.url }}{{ page.url }}" />
+
 <!-- Links to information about the author(s) of the document -->
 <link rel="author" href="humans.txt" />
 
@@ -31,53 +48,43 @@
 {% endif %}
 
 {% if meta.author.fediverse %}
-  <!-- fediverse creator tag -->
+  <!-- Fediverse creator tag -->
   <meta name="fediverse:creator" content="{{ meta.author.fediverse }}" />
 {% endif %}
 
-<!-- Open Graph meta  -->
-<meta property="og:url" content="{{ meta.url }}{{ page.url }}" />
+<!-- ================================
+     OPEN GRAPH (Facebook, WhatsApp, LinkedIn)
+     Single image: og-default.png works for all platforms
+     ================================ -->
 <meta property="og:type" content="website" />
-
-<meta
-  property="og:title"
-  content="{%- if discover.title -%}
-    {{- discover.title -}}
-  {%- elif title -%}
-    {{- title -}}
-  {%- else -%}
-    {{- meta.siteName -}}
-  {%- endif -%}"
-/>
-
-<meta
-  property="og:image"
-  content="{%- if layout == 'post' -%}
-    {{- meta.url -}}/assets/og-images/{{ title | slugify }}-preview.jpeg
-  {%- else -%}
-    {{- meta.url -}}/img/3RyAHyp0Tr-640.webp
-  {%- endif -%}"
-/>
-
-<meta
-  property="og:image:alt"
-  content="{%- if layout == 'post' -%}
-    {{- title -}}
-  {%- else -%}
-    ELIS – Electoral Integrity Strategies
-  {%- endif -%}"
-/>
-
+<meta property="og:url" content="{{ meta.url }}{{ page.url }}" />
+<meta property="og:site_name" content="{{ meta.siteName }}" />
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<meta property="og:image" content="{{ meta.url }}{{ meta.opengraph_default }}" />
+<meta property="og:image:alt" content="{{ meta.opengraph_default_alt }}" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:description" content="{{ metaDescription }}" />
-<meta property="og:site_name" content="{{ meta.siteName }}" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:secure_url" content="{{ meta.url }}{{ meta.opengraph_default }}" />
 <meta property="og:locale" content="{{ meta.locale }}" />
-<meta property="article:author" content="{{ meta.author.name }}" />
 
-<!-- Twitter specific head data was removed in v2 -->
+<!-- ================================
+     TWITTER CARD
+     Single image: og-default.png works for Twitter too
+     ================================ -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="{{ meta.url }}{{ page.url }}" />
+<meta name="twitter:title" content="{{ metaTitle }}" />
+<meta name="twitter:description" content="{{ metaDescription }}" />
+<meta name="twitter:image" content="{{ meta.url }}{{ meta.opengraph_default }}" />
+<meta name="twitter:image:alt" content="{{ meta.opengraph_default_alt }}" />
+{% if meta.creator.social %}
+<meta name="twitter:creator" content="{{ meta.creator.social }}" />
+<meta name="twitter:site" content="{{ meta.creator.social }}" />
+{% endif %}
 
-<!-- RSS Autodiscovery. Loops over meta.blog.feedLinks -->
+<!-- RSS Autodiscovery -->
 {% for feedLink in meta.blog.feedLinks %}
   <link
     rel="alternate"
@@ -87,7 +94,7 @@
   />
 {% endfor %}
 
-<!-- Favicon: https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->
+<!-- Favicon -->
 <link rel="icon" href="{{ '/favicon.ico' | url }}" sizes="any" />
 <link rel="icon" href="{{ '/favicon.svg' | url }}" type="image/svg+xml" />
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | url }}" />

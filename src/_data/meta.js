@@ -24,7 +24,7 @@ export const pathToSvgLogo = 'src/assets/svg/misc/logo.svg'; // used for favicon
 export const themeColor = '#1B2332'; // Updated to match ELIS header color
 export const themeLight = '#f8f8f8'; // Light background color
 export const themeDark = '#273342'; // Updated to match ELIS hero background
-export const opengraph_default = '/assets/images/ELIS-hero-image.png'; // Updated to ELIS hero image
+export const opengraph_default = '/assets/og-images/og-default.png';
 export const opengraph_default_alt =
   'Hand placing ballot in transparent box with world map in background, symbolizing global electoral integrity research'; // Updated alt text
 export const blog = {
