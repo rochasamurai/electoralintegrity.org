@@ -1,4 +1,6 @@
-export const url = process.env.URL || 'http://localhost:8080';
+export const url = process.env.NODE_ENV === 'development' 
+  ? 'http://localhost:8080'
+  : 'https://electoralintegrity.org';
 // Extract domain from `url`
 export const domain = new URL(url).hostname;
 export const siteName = 'ELIS - Electoral Integrity Strategies';
