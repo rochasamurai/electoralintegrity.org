@@ -190,7 +190,7 @@ The `dist/` directory can then be used by your hosting provider (e.g. Cloudflare
 ## Institutional Affiliation
 
 **Imperial College Business School**  
-Visiting Researcher programme  
+Visiting Researcher
 
 **Principal Investigator:** Carlos Rocha
 
@@ -226,8 +226,7 @@ Support is welcome for this independent academic research. Contributions help to
 
 - **General enquiries:** [contact@electoralintegrity.org](mailto:contact@electoralintegrity.org)  
 - **Research questions:** [research@electoralintegrity.org](mailto:research@electoralintegrity.org)  
-- **Principal Investigator:** [carlos.rocha@electoralintegrity.org](mailto:carlos.rocha@electoralintegrity.org)  
-- **Institutional email:** [c.rocha@imperial.ac.uk](mailto:c.rocha@imperial.ac.uk)  
+- **Principal Investigator:** [carlos.rocha@electoralintegrity.org](mailto:carlos.rocha@electoralintegrity.org)
 - **Tool support (ELIS SLR Agent):** [elis@electoralintegrity.org](mailto:elis@electoralintegrity.org)
 
 ---
