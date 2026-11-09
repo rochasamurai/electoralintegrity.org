@@ -4,7 +4,7 @@
  *
  * Usage: node scripts/stage-v2-preview.mjs <preview-build-dist> <production-dist>
  */
-import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { strict as assert } from 'node:assert';
 
@@ -23,8 +23,8 @@ function transform(html) {
     output = output.replaceAll(`href="/${lang}/"`, `href="${prefix}/${lang}/"`);
   }
   output = output.replaceAll('href="/privacy/"', `href="${prefix}/privacy/"`);
-  output = output.replace(/<head(\\s[^>]*)?>/i, match => `${match}\n<meta name="robots" content="noindex, nofollow, noarchive">`);
-  output = output.replace(/<body(\\s[^>]*)?>/i, match =>
+  output = output.replace(/<head(\s[^>]*)?>/i, match => `${match}\n<meta name="robots" content="noindex, nofollow, noarchive">`);
+  output = output.replace(/<body(\s[^>]*)?>/i, match =>
     `${match}\n<div role="note" style="background:#fff1c9;color:#15273e;text-align:center;padding:12px 16px;font:600 14px/1.5 system-ui,sans-serif;position:relative;z-index:50">ELIS Website 2.0 — preview / pré-visualização · <a style="color:#174765;text-decoration:underline" href="/">Return to the current site / Voltar ao site atual</a></div>`
   );
   return output;
