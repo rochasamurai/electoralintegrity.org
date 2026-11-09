@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read        # required to check out the repository
-  pages: write          # required to publish to GitHub Pages
-  id-token: write       # required by deploy-pages@v4
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: "pages"
@@ -22,26 +22,57 @@ jobs:
       URL: https://electoralintegrity.org
 
     steps:
-      - name: Checkout repository
+      - name: Checkout production main
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20      # current LTS version supported on GitHub-hosted runners
+          node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Install production dependencies
         run: npm ci --include=dev
 
-      - name: Build Eleventy site
-        # In this project, `npm run build` generates the `dist/` folder
+      - name: Build current production site
         run: npm run build
+
+      - name: Checkout approved preview source
+        uses: actions/checkout@v4
+        with:
+          repository: rochasamurai/electoralintegrity.org
+          ref: elis-website-v2
+          path: _elis_preview_source
+          persist-credentials: false
+
+      - name: Install preview dependencies
+        working-directory: _elis_preview_source
+        run: npm ci --include=dev
+
+      - name: Build preview source
+        working-directory: _elis_preview_source
+        run: npm run build
+
+      - name: Stage preview inside production artifact
+        run: node scripts/stage-v2-preview.mjs _elis_preview_source/dist dist
+
+      - name: Verify published structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s dist/index.html
+          test -s dist/preview-2-0/index.html
+          test -s dist/preview-2-0/en/index.html
+          test -s dist/preview-2-0/pt/index.html
+          test -s dist/preview-2-0/privacy/index.html
+          grep -q 'noindex, nofollow' dist/preview-2-0/en/index.html
+          grep -q 'href="/preview-2-0/pt/"' dist/preview-2-0/en/index.html
+          grep -q 'href="/preview-2-0/en/"' dist/preview-2-0/pt/index.html
+          grep -q 'orientation:landscape' dist/preview-2-0/pt/index.html
 
       - name: Upload Pages artefact
         uses: actions/upload-pages-artifact@v3
         with:
-          # This must point to the output directory configured in eleventy.config.js
           path: ./dist
 
   deploy:
@@ -55,4 +86,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        
