@@ -1,41 +1,29 @@
 ---
-title: Privacy Policy
-discover:
-  title: Privacy Policy
+title: Privacy | Privacidade
 permalink: /privacy/index.html
-description: I respect the EU General Data Protection Regulation (GDPR). This policy document explains how I collect and handle any information you provide to me.
-date: "Last Modified"
+description: Privacy information for visitors to the ELIS website.
 layout: page
 ---
+# Privacy notice / Aviso de privacidade
 
-Edit your details in `_data/personal.yaml`
+**Last reviewed / Última revisão: 9 November / novembro de 2026**
 
-I respect the EU General Data Protection Regulation (GDPR) and this policy document explains how I collect and handle any information you provide to me.
+## English
 
-**What background data is collected?**
-This site does not use any third party tracking scripts.
+This is an informational research website. The ELIS 2.0 landing pages do not contain a registration form or client-side analytics script. When you choose an email contact link, your email application prepares a message; the ELIS website does not receive the message until you send it through your email provider.
 
-**How do I use the data you provide?**
-This website does not collect any data.
+Messages voluntarily sent to ELIS may contain your name, email address and information you provide. They are used to handle your enquiry and related correspondence. Do not send sensitive personal information unnecessarily.
 
-**How secure is your data?**
-Very secure, as this website does not collect any information.
+The site may be delivered using GitHub Pages and associated infrastructure, which may process technical connection information. ELIS also links to third-party websites with separate privacy practices. We do not claim these providers collect no technical data.
 
-**How secure is this website?**
-This website transmits itself using HTTPS, encrypting all data between the browser and the server. Your network provider can still see that you are downloading assets from this site, but not its content. This also protects you from third parties intercepting data, for example, while browsing on public WiFi, or from network providers injecting advertisements on this site. All relevant response HTTP headers are set for your protection and the Content Security Policy is adjusted to this websites requirements.
+For questions or privacy requests, contact [contact@electoralintegrity.org](mailto:contact@electoralintegrity.org). This notice should be reviewed again before enabling analytics, forms, donations or additional services.
 
-**Data controller**
+## Português
 
-{{ personal.address }}
+Este é um website informativo de pesquisa. As páginas da versão 2.0 não incluem formulário de cadastro ou scripts de análise de audiência no navegador. Ao clicar em um link de contato, seu aplicativo de e-mail prepara uma mensagem; o site ELIS só recebe a mensagem após o envio pelo provedor de e-mail.
 
-If you have any questions or doubts, please contact me: {{ personal.email }}.
+Mensagens enviadas voluntariamente ao ELIS podem conter nome, endereço de e-mail e as informações fornecidas. Esses dados são utilizados para tratar sua consulta e a correspondência relacionada. Evite enviar dados pessoais sensíveis sem necessidade.
 
-**Changes to the policy**
-If I change the content of this policy, those changes will be effective at the time I post them here.
+O site pode ser distribuído pelo GitHub Pages e infraestrutura associada, que podem processar dados técnicos da conexão. Há também links para serviços externos, sujeitos a políticas próprias. Não afirmamos que esses fornecedores deixam de coletar dados técnicos.
 
-**Complaints**
-If you have any reason to complain about the way I handle your privacy, please contact me by email: {{ personal.email }}.
-
----
-
-*Last updated: {{ page.date | formatDate('MMMM D, YYYY') }}*
+Para dúvidas ou pedidos sobre privacidade: [contact@electoralintegrity.org](mailto:contact@electoralintegrity.org). Esta política deve ser revisada antes de ativar analytics, formulários, doações ou serviços adicionais.

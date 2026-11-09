@@ -1,0 +1,40 @@
+name: Validate ELIS Website v2
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --include=dev
+      - name: Build site
+        run: npm run build
+      - name: Check bilingual routes and responsive requirements
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s dist/index.html
+          test -s dist/en/index.html
+          test -s dist/pt/index.html
+          grep -q 'lang="en-GB"' dist/en/index.html
+          grep -q 'lang="pt-BR"' dist/pt/index.html
+          grep -q 'hreflang="en-GB"' dist/pt/index.html
+          grep -q 'hreflang="pt-BR"' dist/en/index.html
+          grep -q 'orientation:landscape' dist/en/index.html
+          grep -q 'max-width:700px' dist/pt/index.html
+          grep -q 'Atlas Eleitoral' dist/pt/index.html
+          grep -q 'Partnerships' dist/en/index.html
+          echo 'Static bilingual checks passed.'
